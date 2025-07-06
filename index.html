@@ -668,6 +668,48 @@
         </div>
     </section>
 
+    <!-- 课程日历 -->
+    <section id="calendar" class="py-10 px-4 md:px-8 bg-gradient-to-br from-gray-900/50 to-blue-900/30">
+        <div class="container mx-auto">
+            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">
+                    <span class="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">2025年课程日历</span>
+                </h2>
+                
+                <div class="course-calendar glassmorphism">
+                    <div class="calendar-header">
+                        <h3 class="calendar-title" id="currentMonth">2025年7月</h3>
+                        <div class="calendar-nav">
+                            <button id="prevMonth">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="nextMonth">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-days">
+                        <div class="day-header">日</div>
+                        <div class="day-header">一</div>
+                        <div class="day-header">二</div>
+                        <div class="day-header">三</div>
+                        <div class="day-header">四</div>
+                        <div class="day-header">五</div>
+                        <div class="day-header">六</div>
+                    </div>
+                    
+                    <div class="calendar-days" id="calendarDays"></div>
+                    
+                    <div class="course-info" id="courseInfo">
+                        <h4>课程安排</h4>
+                        <p class="text-gray-400 text-sm">请点击日历中的日期查看课程安排</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- 报名部分 -->
     <section id="enroll" class="py-20 px-4 md:px-8">
         <div class="container mx-auto">
@@ -962,6 +1004,164 @@
             if (window.scrollY > 100) {
                 nav.classList.remove('opacity-0');
             }
+
+            
+            // ---------------------
+            // 课程日历功能实现
+            // ---------------------
+            const calendarDaysEl = document.getElementById('calendarDays');
+            const currentMonthEl = document.getElementById('currentMonth');
+            const prevMonthBtn = document.getElementById('prevMonth');
+            const nextMonthBtn = document.getElementById('nextMonth');
+            const courseInfoEl = document.getElementById('courseInfo');
+            
+            // 课程数据 - 2025年7月至8月的课程安排
+            const courseData = {
+                '2025-07': [
+                    { date: '05', subject: '线性代数基础概念', time: '20:00-22:00' },
+                    { date: '09', subject: 'Python环境搭建', time: '20:00-22:00' },
+                    { date: '15', subject: '向量空间与线性变换', time: '20:00-22:00' },
+                    { date: '17', subject: 'Python基础语法', time: '20:00-22:00' },
+                    { date: '22', subject: '矩阵运算与特征值', time: '20:00-22:00' },
+                    { date: '24', subject: 'NumPy科学计算', time: '20:00-22:00' },
+                    { date: '29', subject: '线性方程组求解', time: '20:00-22:00' },
+                    { date: '31', subject: 'Pandas数据处理', time: '20:00-22:00' }
+                ],
+                '2025-08': [
+                    { date: '03', subject: '深度学习基础概念', time: '20:00-22:00' },
+                    { date: '06', subject: 'PyTorch入门', time: '20:00-22:00' },
+                    { date: '10', subject: '神经网络原理', time: '20:00-22:00' },
+                    { date: '13', subject: '综合项目实践', time: '20:00-22:00' }
+                ]
+            };
+            
+            // 当前显示的年月
+            let currentYear = 2025;
+            let currentMonth = 7; // 7月
+            
+            // 初始化日历
+            initCalendar();
+            
+            // 上一个月按钮事件
+            prevMonthBtn.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 1) {
+                    currentMonth = 12;
+                    currentYear--;
+                }
+                renderCalendar();
+            });
+            
+            // 下一个月按钮事件
+            nextMonthBtn.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 12) {
+                    currentMonth = 1;
+                    currentYear++;
+                }
+                renderCalendar();
+            });
+            
+            // 初始化日历
+            function initCalendar() {
+                renderCalendar();
+            }
+            
+            // 渲染日历
+            function renderCalendar() {
+                // 更新当前月份显示
+                const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+                currentMonthEl.textContent = `${currentYear}年${monthNames[currentMonth - 1]}`;
+                
+                // 清空日历
+                calendarDaysEl.innerHTML = '';
+                
+                // 获取当前月份的第一天是星期几 (0-6, 0是周日)
+                const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay();
+                
+                // 获取当前月份的天数
+                const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+                
+                // 获取上个月的天数
+                const daysInPrevMonth = new Date(currentYear, currentMonth - 1, 0).getDate();
+                
+                // 渲染上个月的最后几天
+                for (let i = firstDay - 1; i >= 0; i--) {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'calendar-day day-disabled';
+                    dayEl.innerHTML = `<span class="day-number">${daysInPrevMonth - i}</span>`;
+                    calendarDaysEl.appendChild(dayEl);
+                }
+                
+                // 渲染当前月份的天数
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'calendar-day';
+                    dayEl.dataset.date = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    dayEl.innerHTML = `<span class="day-number">${day}</span>`;
+                    
+                    // 检查是否有课程
+                    const dateKey = `${currentYear}-${String(currentMonth).padStart(2, '0')}`;
+                    const courseForDay = courseData[dateKey]?.find(course => course.date === String(day).padStart(2, '0'));
+                    if (courseForDay) {
+                        dayEl.classList.add('day-with-course');
+                        dayEl.dataset.course = JSON.stringify(courseForDay);
+                    }
+                    
+                    // 添加点击事件
+                    dayEl.addEventListener('click', () => handleDayClick(dayEl));
+                    
+                    calendarDaysEl.appendChild(dayEl);
+                }
+                
+                // 添加动画效果
+                const calendarDays = document.querySelectorAll('.calendar-day:not(.day-disabled)');
+                calendarDays.forEach((day, index) => {
+                    setTimeout(() => {
+                        day.style.opacity = '1';
+                        day.style.transform = 'translateY(0)';
+                    }, 50 * index);
+                });
+            }
+            
+            // 处理日期点击事件
+            function handleDayClick(dayEl) {
+                // 移除之前选中的日期
+                document.querySelectorAll('.calendar-day.day-selected').forEach(day => {
+                    day.classList.remove('day-selected');
+                });
+                
+                // 添加当前选中的日期
+                dayEl.classList.add('day-selected');
+                
+                // 显示课程信息
+                const courseDataStr = dayEl.dataset.course;
+                if (courseDataStr) {
+                    const courseInfo = JSON.parse(courseDataStr);
+                    courseInfoEl.innerHTML = `
+                        <h4>${courseInfo.subject}</h4>
+                        <ul>
+                            <li><strong>时间：</strong>${courseInfo.time}</li>
+                            <li><strong>日期：</strong>${dayEl.dataset.date}</li>
+                        </ul>
+                    `;
+                } else {
+                    courseInfoEl.innerHTML = `
+                        <h4>课程安排</h4>
+                        <p class="text-gray-400 text-sm">当天没有安排课程</p>
+                    `;
+                }
+                
+                // 添加选中动画
+                const selectedDay = dayEl.querySelector('.day-number');
+                selectedDay.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    selectedDay.style.transform = 'scale(1)';
+                }, 300);
+            }
+    
+
+        
         });
     </script>
 </body>
