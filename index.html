@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>六周，赢在大学起跑线。——线性代数深耕 + Python & 深度学习导论速通</title>
     <script src="https://cdn.tailwindcss.com/3.3.3"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -10,11 +10,21 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
         
+        :root {
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --secondary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --hover-shadow: 0 12px 28px 0 rgba(99, 102, 241, 0.3);
+            --accent-color: #4ade80;
+        }
+        
         body {
             font-family: 'Noto Sans SC', sans-serif;
             background-color: #0f172a;
             color: #e2e8f0;
             overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .glassmorphism {
@@ -22,7 +32,8 @@
             backdrop-filter: blur(10px);
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .card-hover {
@@ -31,11 +42,13 @@
         
         .card-hover:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 28px 0 rgba(99, 102, 241, 0.3);
+            box-shadow: var(--hover-shadow);
         }
         
         .flip-card {
             perspective: 1000px;
+            margin: 1rem;
+            height: 100%;
         }
         
         .flip-card-inner {
@@ -56,12 +69,13 @@
             height: 100%;
             backface-visibility: hidden;
             border-radius: 16px;
-            padding: 24px;
+            padding: 1.5rem;
+            box-sizing: border-box;
         }
         
         .flip-card-back {
             transform: rotateY(180deg);
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            background: var(--primary-gradient);
         }
         
         .ripple {
@@ -122,7 +136,7 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: #4ade80;
+            background-color: var(--accent-color);
             transition: width 0.3s ease;
         }
         
@@ -144,7 +158,7 @@
         .timeline-item {
             position: relative;
             padding-left: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         
         .timeline-item:before {
@@ -152,19 +166,19 @@
             position: absolute;
             left: 0;
             top: 5px;
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: #4ade80;
+            background: var(--accent-color);
         }
         
         .timeline-item:after {
             content: '';
             position: absolute;
-            left: 5px;
-            top: 17px;
+            left: 4px;
+            top: 15px;
             width: 2px;
-            height: calc(100% - 17px);
+            height: calc(100% - 15px);
             background: rgba(255, 255, 255, 0.2);
         }
         
@@ -173,55 +187,64 @@
         }
         
         .parallax {
-            background-attachment: fixed;
+            background-attachment: scroll;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
         
+        /* 移动端菜单样式 */
         .mobile-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            margin: 0.5rem;
-            border-radius: 0.75rem;
-            background: rgba(15, 23, 42, 0.9);
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 85%;
+            max-width: 350px;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            transform-origin: top;
-            transform: scaleY(0);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            z-index: 100;
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
         }
         
         .mobile-menu.active {
-            transform: scaleY(1);
-            opacity: 1;
+            left: 0;
+        }
+        
+        .mobile-menu .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: #e2e8f0;
+            cursor: pointer;
+        }
+        
+        .mobile-menu ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
         
         .mobile-menu a {
-            display: block;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
         
-        .mobile-menu a:hover, .mobile-menu a:focus {
-            background-color: rgba(74, 222, 128, 0.1);
-            color: #4ade80;
+        .mobile-menu a:hover {
+            color: #38bdf8;
         }
         
         .theme-toggle {
             position: relative;
-            width: 50px;
-            height: 24px;
-            border-radius: 12px;
+            width: 45px;
+            height: 22px;
+            border-radius: 11px;
             background: rgba(255, 255, 255, 0.1);
             cursor: pointer;
             transition: all 0.3s ease;
@@ -230,8 +253,8 @@
         .theme-toggle:after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             background: #fff;
             top: 2px;
@@ -244,16 +267,16 @@
         }
         
         .theme-toggle.active:after {
-            left: 28px;
-            background: #4ade80;
+            left: 25px;
+            background: var(--accent-color);
         }
         
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: rgba(74, 222, 128, 0.7);
             display: flex;
@@ -274,6 +297,244 @@
         .back-to-top:hover {
             background: rgba(74, 222, 128, 0.9);
         }
+        
+        /* 日历样式 */
+        .course-calendar {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .calendar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #4ade80, #38bdf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .calendar-nav button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .calendar-nav button:hover {
+            background: rgba(74, 222, 128, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .calendar-nav button:active {
+            transform: translateY(0);
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.25rem;
+            padding: 0.5rem;
+        }
+        
+        .day-header {
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        
+        .calendar-day {
+            position: relative;
+            min-height: 60px;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .calendar-day:hover:not(.day-disabled) {
+            background: rgba(74, 222, 128, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .day-number {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .day-disabled {
+            color: #475569;
+            cursor: not-allowed;
+        }
+        
+        .day-disabled:hover {
+            background: transparent;
+            transform: none;
+        }
+        
+        .day-selected {
+            background: var(--primary-gradient);
+            color: white;
+        }
+        
+        .day-selected:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(76, 70, 229, 0.5);
+        }
+        
+        .day-with-course {
+            position: relative;
+        }
+        
+        .day-with-course:after {
+            content: '';
+            position: absolute;
+            bottom: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+        
+        .course-info {
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .course-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #38bdf8;
+        }
+        
+        .course-info ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .course-info li {
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .course-info li:before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+        
+        /* 移动端响应式优化 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: clamp(1.8rem, 5vw, 2.8rem);
+            }
+            
+            h2 {
+                font-size: clamp(1.5rem, 4vw, 2.2rem);
+            }
+            
+            h3 {
+                font-size: clamp(1.2rem, 3vw, 1.6rem);
+            }
+            
+            p {
+                font-size: clamp(0.9rem, 2vw, 1rem);
+            }
+            
+            .grid-cols-1 md\\:grid-cols-2, 
+            .grid-cols-1 md\\:grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .flip-card-front, .flip-card-back {
+                padding: 1.2rem;
+            }
+            
+            .flip-card-front img {
+                height: 150px;
+                object-fit: contain;
+            }
+            
+            .timeline-item {
+                padding-left: 25px;
+            }
+            
+            header {
+                min-h-screen: 80vh;
+            }
+            
+            #particles-js {
+                opacity: 0.7;
+            }
+            
+            /* 日历优化 */
+            .calendar-day {
+                min-height: 50px;
+            }
+            
+            .day-number {
+                width: 18px;
+                height: 18px;
+                font-size: 0.7rem;
+            }
+            
+            .course-info {
+                padding: 0.75rem;
+            }
+            
+            .course-info h4 {
+                font-size: 0.9rem;
+            }
+            
+            .course-info li {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -290,32 +551,33 @@
                 <a href="#modules" class="nav-link text-gray-300 hover:text-white transition-colors">课程模块</a>
                 <a href="#team" class="nav-link text-gray-300 hover:text-white transition-colors">授课团队</a>
                 <a href="#cases" class="nav-link text-gray-300 hover:text-white transition-colors">实操案例</a>
+                <a href="#calendar" class="nav-link text-gray-300 hover:text-white transition-colors">课程日历</a>
+                <a href="#enroll" class="nav-link text-gray-300 hover:text-white transition-colors">立即报名</a>
             </div>
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-3">
                 <div class="theme-toggle" id="themeToggle"></div>
-                <button class="md:hidden text-gray-300 focus:outline-none" id="mobileMenuButton" aria-label="导航菜单">
+                <button class="md:hidden text-gray-300 focus:outline-none text-xl" id="mobileMenuButton" aria-label="导航菜单">
                     <i class="fas fa-bars"></i>
                 </button>
-            </div>
-            
-            <!-- 移动端导航菜单 -->
-            <div class="mobile-menu md:hidden" id="mobileMenu">
-                <a href="#overview" class="text-gray-300 hover:text-white transition-colors flex items-center">
-                    <i class="fas fa-book-open mr-3 text-green-400"></i>课程概览
-                </a>
-                <a href="#modules" class="text-gray-300 hover:text-white transition-colors flex items-center">
-                    <i class="fas fa-cubes mr-3 text-green-400"></i>课程模块
-                </a>
-                <a href="#team" class="text-gray-300 hover:text-white transition-colors flex items-center">
-                    <i class="fas fa-users mr-3 text-green-400"></i>授课团队
-                </a>
-                <a href="#cases" class="text-gray-300 hover:text-white transition-colors flex items-center">
-                    <i class="fas fa-laptop-code mr-3 text-green-400"></i>实操案例
-                </a>
             </div>
         </div>
     </nav>
     
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="#overview"><i class="fas fa-book-open mr-3 text-green-400"></i>课程概览</a></li>
+            <li><a href="#modules"><i class="fas fa-cubes mr-3 text-green-400"></i>课程模块</a></li>
+            <li><a href="#team"><i class="fas fa-users mr-3 text-green-400"></i>授课团队</a></li>
+            <li><a href="#cases"><i class="fas fa-laptop-code mr-3 text-green-400"></i>实操案例</a></li>
+            <li><a href="#calendar"><i class="fas fa-calendar-alt mr-3 text-green-400"></i>课程日历</a></li>
+            <li><a href="#enroll"><i class="fas fa-ticket-alt mr-3 text-green-400"></i>立即报名</a></li>
+        </ul>
+    </div>
+
     <!-- 回到顶部按钮 -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up text-white"></i>
@@ -327,59 +589,59 @@
             <div class="swiper-slide parallax" style="background-image: url('https://p3-search.byteimg.com/obj/labis/c64d07ec249d3f61761999ce7a45ad58');"></div>
         </div>
         <div class="container mx-auto px-4 md:px-8 relative z-10 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-glow staggered-entry" style="transition-delay: 0.1s;">
+            <h1 class="text-4xl md:text-[clamp(2rem,5vw,3rem)] font-bold mb-6 text-glow staggered-entry" style="transition-delay: 0.1s;">
                 六周，赢在大学起跑线。
             </h1>
-            <h2 class="text-2xl md:text-4xl font-semibold mb-8 text-green-400 staggered-entry" style="transition-delay: 0.2s;">
+            <h2 class="text-2xl md:text-[clamp(1.5rem,4vw,2.5rem)] font-semibold mb-8 text-green-400 staggered-entry" style="transition-delay: 0.2s;">
                 ——线性代数深耕 + Python & 深度学习导论速通
             </h2>
-            <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto staggered-entry" style="transition-delay: 0.3s;">
+            <p class="text-lg md:text-[clamp(1rem,2vw,1.2rem)] text-gray-300 mb-10 max-w-2xl mx-auto staggered-entry" style="transition-delay: 0.3s;">
                 为期六周的密集课程，帮助您建立扎实的数学基础与编程技能，抢占大学学习先机
             </p>
-            <a href="#enroll" class="ripple inline-block px-8 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 staggered-entry" style="transition-delay: 0.4s;">
+            <a href="#enroll" class="ripple inline-block px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 staggered-entry" style="transition-delay: 0.4s;">
                 立即报名 <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
     </header>
 
     <!-- 课程介绍 -->
-    <section id="overview" class="py-20 px-4 md:px-8">
+    <section id="overview" class="py-16 px-4 md:px-8">
         <div class="container mx-auto">
-            <div class="glassmorphism p-8 mb-16 staggered-entry" style="transition-delay: 0.1s;">
-                <h2 class="text-3xl font-bold mb-6 flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
+            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
                         <i class="fas fa-book-open"></i>
                     </div>
                     课程介绍
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     <div>
-                        <p class="mb-6 text-gray-300">本课程专为高考后的准大学生打造，用六周，展望一个璀璨的大学生活，通过线性代数深耕与Python及深度学习导论的系统学习，帮助学生建立扎实的数学基础与编程技能，抢占大学学习先机。课程采用理论与实践结合的方式，确保学生在掌握核心概念的同时，具备解决实际问题的能力。</p>
+                        <p class="mb-4 text-gray-300">本课程为期六周，专为大学生打造，通过线性代数深耕与Python及深度学习导论的系统学习，帮助学生建立扎实的数学基础与编程技能，抢占大学学习先机。</p>
                         
-                        <div class="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-6 mb-6">
-                            <h4 class="font-semibold text-lg mb-3 text-green-400">课程时间安排</h4>
-                            <p class="text-gray-300">每周两次晚间课程，每次2小时，持续六周</p>
-                            <p class="text-gray-300 mt-4">不影响白天出游，大家可以正常开启暑期旅行哦！</p>
+                        <div class="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-4 mb-4">
+                            <h4 class="font-semibold text-base md:text-lg mb-2 text-green-400">课程时间安排</h4>
+                            <p class="text-gray-300 text-sm md:text-base">每周两次晚间课程，每次2小时，持续六周</p>
+                            <p class="text-gray-300 text-sm md:text-base mt-1">平衡白天活动与夜间学习，确保学习连续性</p>
                         </div>
                     </div>
                     <div>
-                        <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 h-full">
-                            <h4 class="font-semibold text-lg mb-3 text-blue-400">课程特色</h4>
-                            <ul class="space-y-3">
+                        <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-4 h-full">
+                            <h4 class="font-semibold text-base md:text-lg mb-3 text-blue-400">课程特色</h4>
+                            <ul class="space-y-2 text-sm md:text-base">
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                                    <span class="text-gray-300">实战导向：每个模块配备实操案例，强化理论应用能力</span>
+                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2 text-sm"></i>
+                                    <span class="text-gray-300">实战导向：每个模块配备实操案例</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
-                                    <span class="text-gray-300">高效学习路径：六周时间合理分配，兼顾深度与广度</span>
+                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2 text-sm"></i>
+                                    <span class="text-gray-300">高效学习路径：六周时间合理分配</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2 text-sm"></i>
                                     <span class="text-gray-300">名师指导：由经验丰富的学长亲自授课</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle text-green-400 mt-1 mr-2 text-sm"></i>
                                     <span class="text-gray-300">小班教学：确保每位学员获得充分关注</span>
                                 </li>
                             </ul>
@@ -389,89 +651,44 @@
             </div>
             
             <!-- 课程时间轴 -->
-            <div class="glassmorphism p-8 mb-16 staggered-entry" style="transition-delay: 0.2s;">
-                <h2 class="text-3xl font-bold mb-8 flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
+            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.2s;">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     六周课程安排
                 </h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">第一周</h3>
-                        <p class="text-gray-300">线性代数基础概念</p>
-                        <p class="text-gray-300">Python环境搭建</p>
+                        <h3 class="text-lg font-semibold text-green-400 mb-1">第一周</h3>
+                        <p class="text-gray-300 text-sm">线性代数基础概念</p>
+                        <p class="text-gray-300 text-sm">Python环境搭建</p>
                     </div>
                     <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">第二周</h3>
-                        <p class="text-gray-300">向量空间与线性变换</p>
-                        <p class="text-gray-300">Python基础语法</p>
+                        <h3 class="text-lg font-semibold text-green-400 mb-1">第二周</h3>
+                        <p class="text-gray-300 text-sm">向量空间与线性变换</p>
+                        <p class="text-gray-300 text-sm">Python基础语法</p>
                     </div>
                     <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">第三周</h3>
-                        <p class="text-gray-300">矩阵运算与特征值</p>
-                        <p class="text-gray-300">NumPy科学计算</p>
+                        <h3 class="text-lg font-semibold text-green-400 mb-1">第三周</h3>
+                        <p class="text-gray-300 text-sm">矩阵运算与特征值</p>
+                        <p class="text-gray-300 text-sm">NumPy科学计算</p>
                     </div>
                     <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">第四周</h3>
-                        <p class="text-gray-300">线性方程组求解</p>
-                        <p class="text-gray-300">Pandas数据处理</p>
+                        <h3 class="text-lg font-semibold text-green-400 mb-1">第四周</h3>
+                        <p class="text-gray-300 text-sm">线性方程组求解</p>
+                        <p class="text-gray-300 text-sm">Pandas数据处理</p>
                     </div>
                     <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">第五周</h3>
-                        <p class="text-gray-300">深度学习基础概念</p>
-                        <p class="text-gray-300">PyTorch入门</p>
+                        <h3 class="text-lg font-semibold text-green-400 mb-1">第五周</h3>
+                        <p class="text-gray-300 text-sm">深度学习基础概念</p>
+                        <p class="text-gray-300 text-sm">PyTorch入门</p>
                     </div>
                     <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">第六周</h3>
-                        <p class="text-gray-300">神经网络原理</p>
-                        <p class="text-gray-300">综合项目实践</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-      <!-- 课程时间轴 -->
-            <div class="glassmorphism p-8 mb-16 staggered-entry" style="transition-delay: 0.2s;">
-                <h2 class="text-3xl font-bold mb-8 flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                     亲授大学生存秘籍
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
-                    <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">part1</h3>
-                        <p class="text-gray-300">大学学习与高中学习的不同</p>
-                        <p class="text-gray-300">如何高效的进行大学学习，打造先发优势</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">part2</h3>
-                        <p class="text-gray-300">无纸化学习</p>
-                        <p class="text-gray-300">平板、电脑、手机的三重联动效率</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">part3</h3>
-                        <p class="text-gray-300">以未来视角规划现在</p>
-                        <p class="text-gray-300">大学与大学之后，迎来的是什么</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">part4</h3>
-                        <p class="text-gray-300">陕西考生的优势与劣势</p>
-                        <p class="text-gray-300">扬长避短，详略有致，铸就多方面开花的大学生活</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">part5</h3>
-                        <p class="text-gray-300">电子工具的使用</p>
-                        <p class="text-gray-300">计算机系统，github,coze,飞书与zoom</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">part6</h3>
-                        <p class="text-gray-300">拥抱ai</p>
-                        <p class="text-gray-300">我们为什么需要ai,我们应该如何使用ai</p>
+                        <h3 class="text-lg font-semibold text-green-400 mb-1">第六周</h3>
+                        <p class="text-gray-300 text-sm">神经网络原理</p>
+                        <p class="text-gray-300 text-sm">综合项目实践</p>
                     </div>
                 </div>
             </div>
@@ -479,38 +696,38 @@
     </section>
 
     <!-- 授课团队 -->
-    <section id="team" class="py-20 px-4 md:px-8 bg-gradient-to-br from-gray-900/50 to-blue-900/30">
+    <section id="team" class="py-16 px-4 md:px-8 bg-gradient-to-br from-gray-900/50 to-blue-900/30">
         <div class="container mx-auto">
-            <div class="glassmorphism p-8 mb-16 staggered-entry" style="transition-delay: 0.1s;">
-                <h2 class="text-3xl font-bold mb-8 flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
+            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
                         <i class="fas fa-users"></i>
                     </div>
                     授课团队
                 </h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     <div class="flex flex-col md:flex-row items-center">
-                        <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-green-400 mb-6 md:mb-0 md:mr-6">
-                            <img src="https://notes.sjtu.edu.cn/uploads/upload_37ba68b05d30063f9fd34888aa31aa87.png" alt="李文博学长" class="w-full h-full object-cover">
+                        <div class="w-32 h-32 rounded-full overflow-hidden border-3 border-green-400 mb-4 md:mb-0 md:mr-4">
+                            <img src="https://notes.sjtu.edu.cn/uploads/upload_68c6e04e26e76bd92afa3920b4d9a858.png" alt="李文博学长" class="w-full h-full object-cover">
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold text-green-400 mb-2">sjtu.wenber学长</h3>
-                            <p class="text-gray-300 mb-4">22级滨河校友，上海交通大学李文博学长</p>
-                            <div class="bg-gray-800/50 rounded-lg p-4">
-                                <p class="text-gray-300 mb-2"><i class="fas fa-trophy text-yellow-400 mr-2"></i> 教育部颁发国家奖学金（大学生最高荣誉）</p>
-                                <p class="text-gray-300 mb-2"><i class="fas fa-award text-yellow-400 mr-2"></i> 校级A等奖学金</p>
-                                <p class="text-gray-300"><i class="fas fa-chart-line text-yellow-400 mr-2"></i> 连续三年物理系第一的成绩</p>
+                            <h3 class="text-xl font-bold text-green-400 mb-1">sjtu.wenber学长</h3>
+                            <p class="text-gray-300 text-sm md:text-base mb-3">22级滨河校友，上海交通大学李文博学长</p>
+                            <div class="bg-gray-800/50 rounded-lg p-3">
+                                <p class="text-gray-300 text-sm mb-1"><i class="fas fa-trophy text-yellow-400 mr-2 text-xs"></i> 教育部颁发国家奖学金</p>
+                                <p class="text-gray-300 text-sm mb-1"><i class="fas fa-award text-yellow-400 mr-2 text-xs"></i> 校级A等奖学金</p>
+                                <p class="text-gray-300 text-sm"><i class="fas fa-chart-line text-yellow-400 mr-2 text-xs"></i> 连续三年物理系第一</p>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <h4 class="text-xl font-semibold text-blue-400 mb-4">导师寄语</h4>
-                        <p class="text-gray-300 mb-6">"精通数学、物理与人工智能。学长团队致力于帮助您在六周内掌握未来学习关键技能，为大学学习与荣誉专业二次招生做好准备。"</p>
+                        <h4 class="text-lg font-semibold text-blue-400 mb-3">导师寄语</h4>
+                        <p class="text-gray-300 text-sm md:text-base mb-4">"精通数学、物理与人工智能。学长团队致力于帮助您在六周内掌握未来学习关键技能，为大学学习与荣誉专业二次招生做好准备。"</p>
                         
-                        <div class="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-6">
-                            <h4 class="font-semibold text-lg mb-3 text-green-400">教学理念</h4>
-                            <p class="text-gray-300">理论与实践相结合，注重基础概念的深入理解和实际应用能力的培养，通过案例教学和项目实践帮助学员快速掌握核心技能。</p>
+                        <div class="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-3">
+                            <h4 class="font-semibold text-base mb-2 text-green-400 text-sm md:text-base">教学理念</h4>
+                            <p class="text-gray-300 text-sm md:text-base">理论与实践相结合，注重基础概念的深入理解和实际应用能力的培养，通过案例教学和项目实践帮助学员快速掌握核心技能。</p>
                         </div>
                     </div>
                 </div>
@@ -519,39 +736,39 @@
     </section>
 
     <!-- 课程模块 -->
-    <section id="modules" class="py-32 px-4 md:px-8 mb-16">  <!-- 添加底部外边距 -->
+    <section id="modules" class="py-25 px-4 md:px-8 mb-12">
         <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-12 text-center staggered-entry" style="transition-delay: 0.1s;">
+            <h2 class="text-2xl md:text-3xl font-bold mb-10 text-center staggered-entry" style="transition-delay: 0.1s;">
                 <span class="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">三大核心模块</span>
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- 线性代数模块 -->
                 <div class="flip-card h-full staggered-entry" style="transition-delay: 0.2s;">
                     <div class="flip-card-inner h-full">
-                        <div class="flip-card-front glassmorphism p-6 card-hover h-full">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mb-4 mx-auto">
-                                <i class="fas fa-calculator text-2xl"></i>
+                        <div class="flip-card-front glassmorphism p-4 card-hover h-full">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mb-3 mx-auto">
+                                <i class="fas fa-calculator text-xl"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-center mb-4 text-green-400">线性代数深耕</h3>
-                            <div class="w-full h-48 mb-4 rounded-lg overflow-hidden">
-                                <img src="https://p3-search.byteimg.com/obj/labis/190754e9dc925657d73e70af5e695fc6" alt="矩阵图标" class="w-full h-full object-cover">
+                            <h3 class="text-xl font-bold text-center mb-3 text-green-400">线性代数深耕</h3>
+                            <div class="w-full h-36 mb-3 rounded-lg overflow-hidden">
+                                <img src="https://p3-search.byteimg.com/obj/labis/190754e9dc925657d73e70af5e695fc6" alt="矩阵图标" class="w-full h-full object-cover" loading="lazy">
                             </div>
-                            <p class="text-gray-300 text-center">掌握线性代数的基本理论与几何意义，为机器学习算法奠定数学基础</p>
+                            <p class="text-gray-300 text-center text-sm">掌握线性代数的基本理论与几何意义，为机器学习算法奠定数学基础</p>
                         </div>
                         <div class="flip-card-back flex flex-col justify-center">
-                            <h3 class="text-2xl font-bold text-center mb-4 text-white">核心内容</h3>
-                            <ul class="space-y-2 text-gray-200">
+                            <h3 class="text-xl font-bold text-center mb-3 text-white">核心内容</h3>
+                            <ul class="space-y-1 text-gray-200 text-sm">
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle mt-1 mr-2 text-xs"></i>
                                     <span>向量空间与线性变换</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle mt-1 mr-2 text-xs"></i>
                                     <span>矩阵运算与特征值分解</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle mt-1 mr-2 text-xs"></i>
                                     <span>线性方程组求解与应用</span>
                                 </li>
                             </ul>
@@ -562,29 +779,29 @@
                 <!-- Python模块 -->
                 <div class="flip-card h-full staggered-entry" style="transition-delay: 0.3s;">
                     <div class="flip-card-inner h-full">
-                        <div class="flip-card-front glassmorphism p-6 card-hover h-full">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mb-4 mx-auto">
-                                <i class="fab fa-python text-2xl"></i>
+                        <div class="flip-card-front glassmorphism p-4 card-hover h-full">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mb-3 mx-auto">
+                                <i class="fab fa-python text-xl"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-center mb-4 text-green-400">Python速通</h3>
-                            <div class="w-full h-48 mb-4 rounded-lg overflow-hidden">
-                                <img src="https://p3-search.byteimg.com/obj/labis/d42d89ee2f930d78ec2650331a923811" alt="Python图标" class="w-full h-full object-cover">
+                            <h3 class="text-xl font-bold text-center mb-3 text-green-400">Python速通</h3>
+                            <div class="w-full h-36 mb-3 rounded-lg overflow-hidden">
+                                <img src="https://p3-search.byteimg.com/obj/labis/d42d89ee2f930d78ec2650331a923811" alt="Python图标" class="w-full h-full object-cover" loading="lazy">
                             </div>
-                            <p class="text-gray-300 text-center">熟练编写Python程序解决数学问题，掌握数据处理与分析的基本方法</p>
+                            <p class="text-gray-300 text-center text-sm">熟练编写Python程序解决数学问题，掌握数据处理与分析的基本方法</p>
                         </div>
                         <div class="flip-card-back flex flex-col justify-center">
-                            <h3 class="text-2xl font-bold text-center mb-4 text-white">核心内容</h3>
-                            <ul class="space-y-2 text-gray-200">
+                            <h3 class="text-xl font-bold text-center mb-3 text-white">核心内容</h3>
+                            <ul class="space-y-1 text-gray-200 text-sm">
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle mt-1 mr-2 text-xs"></i>
                                     <span>Python语法基础与数据结构</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle mt-1 mr-2 text-xs"></i>
                                     <span>函数编程与面向对象思想</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle mt-1 mr-2 text-xs"></i>
                                     <span>科学计算库（NumPy、Pandas）入门</span>
                                 </li>
                             </ul>
@@ -595,29 +812,29 @@
                 <!-- 深度学习模块 -->
                 <div class="flip-card h-full staggered-entry" style="transition-delay: 0.4s;">
                     <div class="flip-card-inner h-full">
-                        <div class="flip-card-front glassmorphism p-6 card-hover h-full">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mb-4 mx-auto">
-                                <i class="fas fa-brain text-2xl"></i>
+                        <div class="flip-card-front glassmorphism p-4 card-hover h-full">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mb-3 mx-auto">
+                                <i class="fas fa-brain text-xl"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-center mb-4 text-green-400">深度学习导论</h3>
-                            <div class="w-full h-48 mb-4 rounded-lg overflow-hidden">
-                                <img src="https://p3-search.byteimg.com/obj/labis/6561504e53cfef445a60111773b692e6" alt="神经网络图标" class="w-full h-full object-cover">
+                            <h3 class="text-xl font-bold text-center mb-3 text-green-400">深度学习导论</h3>
+                            <div class="w-full h-36 mb-3 rounded-lg overflow-hidden">
+                                <img src="https://p3-search.byteimg.com/obj/labis/6561504e53cfef445a60111773b692e6" alt="神经网络图标" class="w-full h-full object-cover" loading="lazy">
                             </div>
-                            <p class="text-gray-300 text-center">理解神经网络的工作原理，能够使用PyTorch构建简单模型</p>
+                            <p class="text-gray-300 text-center text-sm">理解神经网络的工作原理，能够使用PyTorch构建简单模型</p>
                         </div>
                         <div class="flip-card-back flex flex-col justify-center">
-                            <h3 class="text-2xl font-bold text-center mb-4 text-white">核心内容</h3>
-                            <ul class="space-y-2 text-gray-200">
+                            <h3 class="text-xl font-bold text-center mb-3 text-white">核心内容</h3>
+                            <ul class="space-y-1 text-gray-200 text-sm">
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle mt-1 mr-2 text-xs"></i>
                                     <span>神经网络基本原理</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle mt-1 mr-2 text-xs"></i>
                                     <span>深度学习框架（PyTorch）入门</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <i class="fas fa-check-circle mt-1 mr-2 text-xs"></i>
                                     <span>图像识别与分类基础</span>
                                 </li>
                             </ul>
@@ -628,40 +845,40 @@
         </div>
     </section>
 
-    <!-- 实操案例展示 -->
-    <section id="cases" class="py-72 px-4 md:px-8 bg-gradient-to-br from-gray-900/50 to-blue-900/30">
+       <!-- 实操案例展示 -->
+       <section id="cases" class="py-52 px-4 md:px-8 bg-gradient-to-br from-gray-900/50 to-blue-900/30">
         <div class="container mx-auto">
-            <div class="glassmorphism p-8 mb-16 staggered-entry" style="transition-delay: 0.1s;">
-                <h2 class="text-3xl font-bold mb-8 flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
+            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     实操案例展示
                 </h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="glassmorphism p-6 rounded-xl card-hover staggered-entry" style="transition-delay: 0.2s;">
-                        <div class="w-full h-48 mb-4 rounded-lg overflow-hidden">
-                            <img src="https://p3-search.byteimg.com/obj/labis/c0443eeb8a2f3b5a58ff78c7fc2ba384" alt="Python代码运行界面" class="w-full h-full object-cover">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glassmorphism p-4 rounded-xl card-hover staggered-entry" style="transition-delay: 0.2s;">
+                        <div class="w-full h-32 mb-3 rounded-lg overflow-hidden">
+                            <img src="https://p3-search.byteimg.com/obj/labis/c0443eeb8a2f3b5a58ff78c7fc2ba384" alt="Python代码运行界面" class="w-full h-full object-cover" loading="lazy">
                         </div>
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">Python代码运行示例</h3>
-                        <p class="text-gray-300">使用VS Code编写的Python程序，实现数据读取与预处理功能，展示了科学计算库的实际应用。</p>
+                        <h3 class="text-base font-semibold text-green-400 mb-1">Python代码运行示例</h3>
+                        <p class="text-gray-300 text-sm">使用VS Code编写的Python程序，实现数据读取与预处理功能。</p>
                     </div>
                     
-                    <div class="glassmorphism p-6 rounded-xl card-hover staggered-entry" style="transition-delay: 0.3s;">
-                        <div class="w-full h-48 mb-4 rounded-lg overflow-hidden">
-                            <img src="https://p3-search.byteimg.com/obj/labis/e9bf4f0890dc2e403540a9550d5b583a" alt="Matplotlib 3D图形" class="w-full h-full object-cover">
+                    <div class="glassmorphism p-4 rounded-xl card-hover staggered-entry" style="transition-delay: 0.3s;">
+                        <div class="w-full h-32 mb-3 rounded-lg overflow-hidden">
+                            <img src="https://p3-search.byteimg.com/obj/labis/e9bf4f0890dc2e403540a9550d5b583a" alt="Matplotlib 3D图形" class="w-full h-full object-cover" loading="lazy">
                         </div>
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">线性代数可视化</h3>
-                        <p class="text-gray-300">三维柱状图展示矩阵变换效果，帮助理解高维数据结构。</p>
+                        <h3 class="text-base font-semibold text-green-400 mb-1">线性代数可视化</h3>
+                        <p class="text-gray-300 text-sm">三维柱状图展示矩阵变换效果，帮助理解高维数据结构。</p>
                     </div>
                     
-                    <div class="glassmorphism p-6 rounded-xl card-hover staggered-entry" style="transition-delay: 0.4s;">
-                        <div class="w-full h-48 mb-4 rounded-lg overflow-hidden">
-                            <img src="https://p3-search.byteimg.com/obj/labis/393329091aa1abb61db167e257dd6c22" alt="PyTorch代码示例" class="w-full h-full object-cover">
+                    <div class="glassmorphism p-4 rounded-xl card-hover staggered-entry" style="transition-delay: 0.4s;">
+                        <div class="w-full h-32 mb-3 rounded-lg overflow-hidden">
+                            <img src="https://p3-search.byteimg.com/obj/labis/393329091aa1abb61db167e257dd6c22" alt="PyTorch代码示例" class="w-full h-full object-cover" loading="lazy">
                         </div>
-                        <h3 class="text-xl font-semibold text-green-400 mb-2">深度学习框架示例</h3>
-                        <p class="text-gray-300">对比展示PyTorch与PyTorch Lightning实现神经网络的代码差异，体现框架简化开发的优势。</p>
+                        <h3 class="text-base font-semibold text-green-400 mb-1">深度学习框架示例</h3>
+                        <p class="text-gray-300 text-sm">对比展示PyTorch与PyTorch Lightning实现神经网络的代码差异。</p>
                     </div>
                 </div>
             </div>
@@ -709,49 +926,50 @@
             </div>
         </div>
     </section>
-    
+
+ 
+
     <!-- 报名部分 -->
-    <section id="enroll" class="py-20 px-4 md:px-8">
+    <section id="enroll" class="py-16 px-4 md:px-8">
         <div class="container mx-auto">
-            <div class="glassmorphism p-8 mb-16 staggered-entry" style="transition-delay: 0.1s;">
-                <h2 class="text-3xl font-bold mb-8 text-center">
+            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">
                     <span class="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">立即报名</span>
                 </h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
                     <div>
-                        <h3 class="text-2xl font-semibold text-green-400 mb-4">课程信息</h3>
-                        <ul class="space-y-3 text-gray-300 mb-6">
+                        <h3 class="text-xl font-semibold text-green-400 mb-3">课程信息</h3>
+                        <ul class="space-y-2 text-gray-300 mb-4 text-sm md:text-base">
                             <li class="flex items-start">
-                                <i class="fas fa-calendar-alt text-green-400 mt-1 mr-3"></i>
+                                <i class="fas fa-calendar-alt text-green-400 mt-1 mr-3 text-sm"></i>
                                 <span>开课时间：2025年7月6日</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-clock text-green-400 mt-1 mr-3"></i>
-                                <span>课程时长：6周，每周2次课（暂定周一、周四晚上），每次2小时</span>
+                                <i class="fas fa-clock text-green-400 mt-1 mr-3 text-sm"></i>
+                                <span>课程时长：6周，每周2次课（周一、周四晚上）</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-users text-green-400 mt-1 mr-3"></i>
-                                <span>班级规模：小班教学，确保学习质量，和学长建立1v1长久联系</span>
+                                <i class="fas fa-users text-green-400 mt-1 mr-3 text-sm"></i>
+                                <span>班级规模：小班教学，每班不超过15人</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-laptop text-green-400 mt-1 mr-3"></i>
+                                <i class="fas fa-laptop text-green-400 mt-1 mr-3 text-sm"></i>
                                 <span>授课方式：线上直播+录播回放</span>
                             </li>
                         </ul>
                         
-                        <div class="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-6">
-                            <h4 class="font-semibold text-lg mb-3 text-green-400">特别优惠</h4>
-                            <p class="text-gray-300">前20名报名学员获赠学长长期一对一学习规划咨询。</p>
+                        <div class="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-3">
+                            <h4 class="font-semibold text-base mb-2 text-green-400 text-sm md:text-base">特别优惠</h4>
+                            <p class="text-gray-300 text-sm md:text-base">前20名报名学员获赠学长长期一对一学习规划咨询。</p>
                         </div>
                     </div>
                     
-                    <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-8 text-center">
-                        <div class="w-48 h-48 mx-auto mb-6 bg-white rounded-lg flex items-center justify-center">
+                    <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 text-center">
+                        <div class="w-40 h-40 mx-auto mb-4 bg-white rounded-lg flex items-center justify-center">
                             <img src="https://notes.sjtu.edu.cn/uploads/upload_cafe4ff01db5833feb4c4a3a50de6de9.png" alt="报名二维码" class="w-full h-full object-contain p-2">
                         </div>
-                        <p class="text-gray-300 mb-4">扫描上方二维码并且添加微信：17792723578（sjtu.wenber）了解更多以报名</p>
-                       
+                        <p class="text-gray-300 text-sm md:text-base mb-3">扫描上方二维码并且添加微信：17792723578以获取报名资格</p>
                     </div>
                 </div>
             </div>
@@ -759,45 +977,48 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="py-12 px-4 md:px-8 bg-gray-900/50">
+    <footer class="py-8 px-4 md:px-8 bg-gray-900/50">
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-xl font-bold bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
+                <div class="mb-4 md:mb-0">
+                    <div class="text-lg font-bold bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
                         <i class="fas fa-graduation-cap mr-2"></i>六周赢在起跑线
                     </div>
-                    <p class="text-gray-400 mt-2">六周，赢在大学起跑线。——线性代数深耕 + Python & 深度学习导论速通</p>
+                    <p class="text-gray-400 text-sm mt-1">六周，赢在大学起跑线。——线性代数深耕 + Python & 深度学习导论速通</p>
                 </div>
                 
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">
-                        <i class="fab fa-weixin text-xl"></i>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                        <i class="fab fa-weixin"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
-                        <i class="fab fa-weibo text-xl"></i>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                        <i class="fab fa-weibo"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">
-                        <i class="fab fa-bilibili text-xl"></i>
+                    <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors text-sm">
+                        <i class="fab fa-bilibili"></i>
                     </a>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2024 六周赢在起跑线课程. 保留所有权利.</p>
-                <div class="text-gray-500 text-sm">
-                    <a href="https://space.coze.cn" class="hover:text-green-400 transition-colors">created by sjtu.wenber<sjtu class="wenber"></sjtu>
+            <div class="border-t border-gray-800 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p class="text-gray-500 mb-3 md:mb-0">© 2024 六周赢在起跑线课程. 保留所有权利.</p>
+                <div class="text-gray-500">
+                    <a href="https://space.coze.cn" class="hover:text-green-400 transition-colors">created by sjtu.wenber</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // 初始化粒子背景
+        // 初始化粒子背景（移动端优化）
         document.addEventListener('DOMContentLoaded', function() {
+            // 移动端减少粒子数量
+            const particleCount = window.innerWidth < 768 ? 50 : 80;
+            
             particlesJS('particles-js', {
                 particles: {
                     number: {
-                        value: 80,
+                        value: particleCount,
                         density: {
                             enable: true,
                             value_area: 800
@@ -827,7 +1048,7 @@
                         }
                     },
                     size: {
-                        value: 3,
+                        value: 2, // 移动端减小粒子大小
                         random: true,
                         anim: {
                             enable: false,
@@ -838,14 +1059,14 @@
                     },
                     line_linked: {
                         enable: true,
-                        distance: 150,
+                        distance: 120, // 移动端减小连接线距离
                         color: "#4ade80",
-                        opacity: 0.4,
+                        opacity: 0.3, // 降低连接线 opacity
                         width: 1
                     },
                     move: {
                         enable: true,
-                        speed: 2,
+                        speed: 1.5, // 降低移动速度
                         direction: "none",
                         random: false,
                         straight: false,
@@ -873,24 +1094,24 @@
                     },
                     modes: {
                         grab: {
-                            distance: 140,
+                            distance: 100, // 移动端减小抓取距离
                             line_linked: {
                                 opacity: 1
                             }
                         },
                         bubble: {
-                            distance: 400,
-                            size: 40,
+                            distance: 300, // 移动端减小气泡距离
+                            size: 30, // 减小气泡大小
                             duration: 2,
                             opacity: 8,
                             speed: 3
                         },
                         repulse: {
-                            distance: 200,
+                            distance: 180, // 减小排斥距离
                             duration: 0.4
                         },
                         push: {
-                            particles_nb: 4
+                            particles_nb: 3 // 减少点击推送的粒子数量
                         },
                         remove: {
                             particles_nb: 2
@@ -917,7 +1138,7 @@
             // 导航栏滚动效果
             const nav = document.getElementById('mainNav');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
+                if (window.scrollY > 50) {
                     nav.classList.remove('opacity-0');
                     nav.classList.add('shadow-lg');
                 } else {
@@ -947,8 +1168,9 @@
             // 点击页面其他区域关闭移动端菜单
             document.addEventListener('click', function(event) {
                 const isClickInsideNav = document.getElementById('mainNav').contains(event.target);
+                const isClickInsideMenu = mobileMenu.contains(event.target);
                 
-                if (!isClickInsideNav && mobileMenu.classList.contains('active')) {
+                if (!isClickInsideNav && !isClickInsideMenu && mobileMenu.classList.contains('active')) {
                     mobileMenu.classList.remove('active');
                     const icon = menuButton.querySelector('i');
                     icon.classList.remove('fa-times');
@@ -1004,7 +1226,6 @@
             if (window.scrollY > 100) {
                 nav.classList.remove('opacity-0');
             }
-
             
             // ---------------------
             // 课程日历功能实现
@@ -1159,9 +1380,6 @@
                     selectedDay.style.transform = 'scale(1)';
                 }, 300);
             }
-    
-
-        
         });
     </script>
 </body>
