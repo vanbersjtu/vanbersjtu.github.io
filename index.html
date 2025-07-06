@@ -1226,7 +1226,6 @@
             if (window.scrollY > 100) {
                 nav.classList.remove('opacity-0');
             }
-            
             // ---------------------
             // 课程日历功能实现
             // ---------------------
@@ -1236,23 +1235,107 @@
             const nextMonthBtn = document.getElementById('nextMonth');
             const courseInfoEl = document.getElementById('courseInfo');
             
-            // 课程数据 - 2025年7月至8月的课程安排
+            // 课程数据 - 2025年7月至8月的课程安排（新增视频、讲义和作业链接）
             const courseData = {
                 '2025-07': [
-                    { date: '05', subject: '线性代数基础概念', time: '20:00-22:00' },
-                    { date: '09', subject: 'Python环境搭建', time: '20:00-22:00' },
-                    { date: '15', subject: '向量空间与线性变换', time: '20:00-22:00' },
-                    { date: '17', subject: 'Python基础语法', time: '20:00-22:00' },
-                    { date: '22', subject: '矩阵运算与特征值', time: '20:00-22:00' },
-                    { date: '24', subject: 'NumPy科学计算', time: '20:00-22:00' },
-                    { date: '29', subject: '线性方程组求解', time: '20:00-22:00' },
-                    { date: '31', subject: 'Pandas数据处理', time: '20:00-22:00' }
+                    { 
+                        date: '05', 
+                        subject: '线性代数基础概念', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/linear_algebra_basics',
+                        lectureUrl: 'https://www.example.com/lecture/linear_algebra_basics.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/linear_algebra_basics.zip'
+                    },
+                    { 
+                        date: '09', 
+                        subject: 'Python环境搭建', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/python_env_setup',
+                        lectureUrl: 'https://www.example.com/lecture/python_env_setup.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/python_env_setup.zip'
+                    },
+                    { 
+                        date: '15', 
+                        subject: '向量空间与线性变换', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/vector_spaces',
+                        lectureUrl: 'https://www.example.com/lecture/vector_spaces.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/vector_spaces.zip'
+                    },
+                    { 
+                        date: '17', 
+                        subject: 'Python基础语法', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/python_basics',
+                        lectureUrl: 'https://www.example.com/lecture/python_basics.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/python_basics.zip'
+                    },
+                    { 
+                        date: '22', 
+                        subject: '矩阵运算与特征值', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/matrix_operations',
+                        lectureUrl: 'https://www.example.com/lecture/matrix_operations.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/matrix_operations.zip'
+                    },
+                    { 
+                        date: '24', 
+                        subject: 'NumPy科学计算', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/numpy_basics',
+                        lectureUrl: 'https://www.example.com/lecture/numpy_basics.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/numpy_basics.zip'
+                    },
+                    { 
+                        date: '29', 
+                        subject: '线性方程组求解', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/linear_equations',
+                        lectureUrl: 'https://www.example.com/lecture/linear_equations.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/linear_equations.zip'
+                    },
+                    { 
+                        date: '31', 
+                        subject: 'Pandas数据处理', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/pandas_basics',
+                        lectureUrl: 'https://www.example.com/lecture/pandas_basics.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/pandas_basics.zip'
+                    }
                 ],
                 '2025-08': [
-                    { date: '03', subject: '深度学习基础概念', time: '20:00-22:00' },
-                    { date: '06', subject: 'PyTorch入门', time: '20:00-22:00' },
-                    { date: '10', subject: '神经网络原理', time: '20:00-22:00' },
-                    { date: '13', subject: '综合项目实践', time: '20:00-22:00' }
+                    { 
+                        date: '03', 
+                        subject: '深度学习基础概念', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/dl_basics',
+                        lectureUrl: 'https://www.example.com/lecture/dl_basics.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/dl_basics.zip'
+                    },
+                    { 
+                        date: '06', 
+                        subject: 'PyTorch入门', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/pytorch_basics',
+                        lectureUrl: 'https://www.example.com/lecture/pytorch_basics.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/pytorch_basics.zip'
+                    },
+                    { 
+                        date: '10', 
+                        subject: '神经网络原理', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/nn_principles',
+                        lectureUrl: 'https://www.example.com/lecture/nn_principles.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/nn_principles.zip'
+                    },
+                    { 
+                        date: '13', 
+                        subject: '综合项目实践', 
+                        time: '20:00-22:00',
+                        videoUrl: 'https://www.example.com/video/project_practice',
+                        lectureUrl: 'https://www.example.com/lecture/project_practice.pdf',
+                        homeworkUrl: 'https://www.example.com/homework/project_practice.zip'
+                    }
                 ]
             };
             
@@ -1345,7 +1428,7 @@
                 });
             }
             
-            // 处理日期点击事件
+            // 处理日期点击事件（修改以显示视频、讲义和作业链接）
             function handleDayClick(dayEl) {
                 // 移除之前选中的日期
                 document.querySelectorAll('.calendar-day.day-selected').forEach(day => {
@@ -1364,6 +1447,24 @@
                         <ul>
                             <li><strong>时间：</strong>${courseInfo.time}</li>
                             <li><strong>日期：</strong>${dayEl.dataset.date}</li>
+                            <li>
+                                <strong>课程视频：</strong>
+                                <a href="${courseInfo.videoUrl}" target="_blank" class="text-blue-400 hover:underline">
+                                    <i class="fas fa-play-circle mr-1"></i>观看课程视频
+                                </a>
+                            </li>
+                            <li>
+                                <strong>手稿讲义：</strong>
+                                <a href="${courseInfo.lectureUrl}" target="_blank" class="text-blue-400 hover:underline">
+                                    <i class="fas fa-file-pdf mr-1"></i>下载讲义PDF
+                                </a>
+                            </li>
+                            <li>
+                                <strong>课后作业：</strong>
+                                <a href="${courseInfo.homeworkUrl}" target="_blank" class="text-blue-400 hover:underline">
+                                    <i class="fas fa-file-archive mr-1"></i>下载作业包
+                                </a>
+                            </li>
                         </ul>
                     `;
                 } else {
@@ -1372,6 +1473,8 @@
                         <p class="text-gray-400 text-sm">当天没有安排课程</p>
                     `;
                 }
+                
+                
                 
                 // 添加选中动画
                 const selectedDay = dayEl.querySelector('.day-number');
