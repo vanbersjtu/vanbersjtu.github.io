@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>六周，赢在大学起跑线。——线性代数深耕 + Python & 深度学习导论速通</title>
+    <title>六周，赢在大学起跑线。——线性代数深耕 + Python &amp; 深度学习导论速通</title>
     <script defer src="https://cdn.tailwindcss.com/3.3.3"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-        
+
         :root {
             --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             --secondary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
@@ -17,7 +17,7 @@
             --hover-shadow: 0 12px 28px 0 rgba(99, 102, 241, 0.3);
             --accent-color: #4ade80;
         }
-        
+
         body {
             font-family: 'Noto Sans SC', sans-serif;
             background-color: #0f172a;
@@ -26,7 +26,7 @@
             line-height: 1.6;
             -webkit-tap-highlight-color: transparent;
         }
-        
+
         .glassmorphism {
             background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(10px);
@@ -35,22 +35,22 @@
             box-shadow: var(--card-shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .card-hover {
             transition: all 0.3s ease;
         }
-        
+
         .card-hover:hover {
             transform: translateY(-5px);
             box-shadow: var(--hover-shadow);
         }
-        
+
         .flip-card {
             perspective: 1000px;
             margin: 1rem;
             height: 100%;
         }
-        
+
         .flip-card-inner {
             position: relative;
             width: 100%;
@@ -58,11 +58,11 @@
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
-        
+
         .flip-card:hover .flip-card-inner {
             transform: rotateY(180deg);
         }
-        
+
         .flip-card-front, .flip-card-back {
             position: absolute;
             width: 100%;
@@ -72,17 +72,17 @@
             padding: 1.5rem;
             box-sizing: border-box;
         }
-        
+
         .flip-card-back {
             transform: rotateY(180deg);
             background: var(--primary-gradient);
         }
-        
+
         .ripple {
             position: relative;
             overflow: hidden;
         }
-        
+
         .ripple:after {
             content: "";
             display: block;
@@ -99,21 +99,21 @@
             opacity: 0;
             transition: transform .5s, opacity 1s;
         }
-        
+
         .ripple:active:after {
             transform: scale(0, 0);
             opacity: .3;
             transition: 0s;
         }
-        
+
         .text-glow {
             text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
         }
-        
+
         .image-overlay {
             position: relative;
         }
-        
+
         .image-overlay:after {
             content: '';
             position: absolute;
@@ -124,11 +124,11 @@
             background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.7) 100%);
             border-radius: 16px;
         }
-        
+
         .nav-link {
             position: relative;
         }
-        
+
         .nav-link:after {
             content: '';
             position: absolute;
@@ -139,28 +139,28 @@
             background-color: var(--accent-color);
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover:after {
             width: 100%;
         }
-        
+
         .staggered-entry {
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.5s ease;
         }
-        
+
         .animate-in {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .timeline-item {
             position: relative;
             padding-left: 30px;
             margin-bottom: 20px;
         }
-        
+
         .timeline-item:before {
             content: '';
             position: absolute;
@@ -171,7 +171,7 @@
             border-radius: 50%;
             background: var(--accent-color);
         }
-        
+
         .timeline-item:after {
             content: '';
             position: absolute;
@@ -181,18 +181,18 @@
             height: calc(100% - 15px);
             background: rgba(255, 255, 255, 0.2);
         }
-        
+
         .timeline-item:last-child:after {
             display: none;
         }
-        
+
         .parallax {
             background-attachment: scroll;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
-        
+
         /* 移动端菜单样式 */
         .mobile-menu {
             position: fixed;
@@ -208,11 +208,11 @@
             transition: left 0.3s ease;
             box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         .mobile-menu.active {
             left: 0;
         }
-        
+
         .mobile-menu .close-menu {
             position: absolute;
             top: 1.5rem;
@@ -221,25 +221,25 @@
             color: #e2e8f0;
             cursor: pointer;
         }
-        
+
         .mobile-menu ul {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
             margin-top: 3rem;
         }
-        
+
         .mobile-menu a {
             color: #94a3b8;
             text-decoration: none;
             font-size: 1.1rem;
             transition: color 0.3s ease;
         }
-        
+
         .mobile-menu a:hover {
             color: #38bdf8;
         }
-        
+
         .theme-toggle {
             position: relative;
             width: 45px;
@@ -251,7 +251,7 @@
             aria-label: "切换主题";
             aria-pressed: "false";
         }
-        
+
         .theme-toggle:after {
             content: '';
             position: absolute;
@@ -263,17 +263,17 @@
             left: 2px;
             transition: all 0.3s ease;
         }
-        
+
         .theme-toggle.active {
             background: rgba(74, 222, 128, 0.5);
             aria-pressed: "true";
         }
-        
+
         .theme-toggle.active:after {
             left: 25px;
             background: var(--accent-color);
         }
-        
+
         .back-to-top {
             position: fixed;
             bottom: 20px;
@@ -292,23 +292,23 @@
             z-index: 99;
             aria-label: "回到顶部";
         }
-        
+
         .back-to-top.active {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .back-to-top:hover {
             background: rgba(74, 222, 128, 0.9);
         }
-        
+
         /* 日历样式 */
         .course-calendar {
             position: relative;
             overflow: hidden;
             border-radius: 16px;
         }
-        
+
         .calendar-header {
             display: flex;
             justify-content: space-between;
@@ -317,7 +317,7 @@
             background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
+
         .calendar-title {
             font-size: 1.2rem;
             font-weight: 700;
@@ -326,12 +326,12 @@
             background-clip: text;
             color: transparent;
         }
-        
+
         .calendar-nav {
             display: flex;
             gap: 0.5rem;
         }
-        
+
         .calendar-nav button {
             width: 30px;
             height: 30px;
@@ -346,23 +346,23 @@
             transition: all 0.3s ease;
             aria-label: "切换月份";
         }
-        
+
         .calendar-nav button:hover {
             background: rgba(74, 222, 128, 0.2);
             transform: translateY(-2px);
         }
-        
+
         .calendar-nav button:active {
             transform: translateY(0);
         }
-        
+
         .calendar-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 0.25rem;
             padding: 0.5rem;
         }
-        
+
         .day-header {
             text-align: center;
             padding: 0.5rem;
@@ -370,7 +370,7 @@
             color: #94a3b8;
             font-weight: 500;
         }
-        
+
         .calendar-day {
             position: relative;
             min-height: 60px;
@@ -386,12 +386,12 @@
             opacity: 0;
             transform: translateY(10px);
         }
-        
+
         .calendar-day:hover:not(.day-disabled) {
             background: rgba(74, 222, 128, 0.1);
             transform: translateY(-2px);
         }
-        
+
         .day-number {
             position: absolute;
             top: 0.5rem;
@@ -405,32 +405,32 @@
             font-size: 0.8rem;
             font-weight: 500;
         }
-        
+
         .day-disabled {
             color: #475569;
             cursor: not-allowed;
         }
-        
+
         .day-disabled:hover {
             background: transparent;
             transform: none;
         }
-        
+
         .day-selected {
             background: var(--primary-gradient);
             color: white;
         }
-        
+
         .day-selected:hover {
             background: var(--primary-gradient);
             transform: translateY(-2px);
             box-shadow: 0 0 15px rgba(76, 70, 229, 0.5);
         }
-        
+
         .day-with-course {
             position: relative;
         }
-        
+
         .day-with-course:after {
             content: '';
             position: absolute;
@@ -440,31 +440,31 @@
             border-radius: 50%;
             background: var(--accent-color);
         }
-        
+
         .course-info {
             padding: 1rem;
             background: rgba(15, 23, 42, 0.5);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
+
         .course-info h4 {
             font-size: 1rem;
             margin-bottom: 0.5rem;
             color: #38bdf8;
         }
-        
+
         .course-info ul {
             list-style-type: none;
             padding-left: 0;
         }
-        
+
         .course-info li {
             margin-bottom: 0.25rem;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
         }
-        
+
         .course-info li:before {
             content: '';
             display: inline-block;
@@ -474,70 +474,70 @@
             background: var(--accent-color);
             margin-right: 0.5rem;
         }
-        
+
         /* 移动端响应式优化 */
         @media (max-width: 768px) {
             h1 {
                 font-size: clamp(1.8rem, 5vw, 2.8rem);
             }
-            
+
             h2 {
                 font-size: clamp(1.5rem, 4vw, 2.2rem);
             }
-            
+
             h3 {
                 font-size: clamp(1.2rem, 3vw, 1.6rem);
             }
-            
+
             p {
                 font-size: clamp(0.9rem, 2vw, 1rem);
             }
-            
-            .grid-cols-1 md:grid-cols-2, 
+
+            .grid-cols-1 md:grid-cols-2,
             .grid-cols-1 md:grid-cols-3 {
                 grid-template-columns: 1fr;
             }
-            
+
             .flip-card-front, .flip-card-back {
                 padding: 1.2rem;
             }
-            
+
             .flip-card-front img {
                 height: 150px;
                 object-fit: contain;
             }
-            
+
             .timeline-item {
                 padding-left: 25px;
             }
-            
+
             header {
                 min-h-screen: 80vh;
             }
-            
+
             #particles-js {
                 opacity: 0.7;
             }
-            
+
             /* 日历优化 */
             .calendar-day {
                 min-height: 50px;
             }
-            
+
             .day-number {
                 width: 18px;
                 height: 18px;
                 font-size: 0.7rem;
             }
-            
+
             .course-info {
                 padding: 0.75rem;
             }
-            
+
             .course-info h4 {
                 font-size: 0.9rem;
             }
-            
+
             .course-info li {
                 font-size: 0.8rem;
             }
@@ -546,9 +546,9 @@
 </head>
 <body class="min-h-screen">
     <a href="#main-content" class="sr-only focus:inline-block bg-green-500 text-white p-2 z-50">跳转到主要内容</a>
-    
+
     <div id="particles-js"></div>
-    
+
     <!-- 导航条 -->
     <nav class="glassmorphism fixed top-0 left-0 right-0 z-50 p-4 transition-all duration-300 opacity-0" id="mainNav">
         <div class="container mx-auto flex items-center justify-between">
@@ -565,16 +565,16 @@
             </div>
             <div class="flex items-center space-x-3">
                 <div class="theme-toggle" id="themeToggle"></div>
-                <button class="md:hidden text-gray-300 focus:outline-none text-xl" id="mobileMenuButton" aria-label="打开导航菜单">
+                <button type="button" class="md:hidden text-gray-300 focus:outline-none text-xl" id="mobileMenuButton" aria-label="打开导航菜单">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </nav>
-    
+
     <!-- 移动端菜单 -->
-    <div class="mobile-menu" id="mobileMenu" aria-label="移动端导航菜单">
-        <div class="close-menu" id="closeMenu" aria-label="关闭导航菜单">
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" id="closeMenu">
             <i class="fas fa-times"></i>
         </div>
         <ul>
@@ -595,19 +595,19 @@
     <!-- 头部横幅 -->
     <header id="main-content" class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0">
-            <div class="swiper-slide parallax" style="background-image: url('https://p3-search.byteimg.com/obj/labis/c64d07ec249d3f61761999ce7a45ad58'); background-size: cover; background-position: center;" aria-hidden="true"></div>
+            <div class="swiper-slide parallax bg-cover bg-center" aria-hidden="true"></div>
         </div>
         <div class="container mx-auto px-4 md:px-8 relative z-10 text-center">
-            <h1 class="text-4xl md:text-[clamp(2rem,5vw,3rem)] font-bold mb-6 text-glow staggered-entry" style="transition-delay: 0.1s;">
+            <h1 class="text-4xl md:text-[clamp(2rem,5vw,3rem)] font-bold mb-6 text-glow staggered-entry transition-delay-100">
                 六周，赢在大学起跑线。
             </h1>
-            <h2 class="text-2xl md:text-[clamp(1.5rem,4vw,2.5rem)] font-semibold mb-8 text-green-400 staggered-entry" style="transition-delay: 0.2s;">
-                ——线性代数深耕 + Python & 深度学习导论速通
+            <h2 class="text-2xl md:text-[clamp(1.5rem,4vw,2.5rem)] font-semibold mb-8 text-green-400 staggered-entry transition-delay-200">
+                ——线性代数深耕 + Python &amp; 深度学习导论速通
             </h2>
-            <p class="text-lg md:text-[clamp(1rem,2vw,1.2rem)] text-gray-300 mb-10 max-w-2xl mx-auto staggered-entry" style="transition-delay: 0.3s;">
+            <p class="text-lg md:text-[clamp(1rem,2vw,1.2rem)] text-gray-300 mb-10 max-w-2xl mx-auto staggered-entry transition-delay-300">
                 为期六周的密集课程，帮助您建立扎实的数学基础与编程技能，抢占大学学习先机
             </p>
-            <a href="#enroll" class="ripple inline-block px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 staggered-entry" style="transition-delay: 0.4s;" aria-label="立即报名课程">
+            <a href="#enroll" class="ripple inline-block px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 staggered-entry transition-delay-400" aria-label="立即报名课程">
                 立即报名 <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
@@ -615,17 +615,17 @@
 
     <!-- 课程介绍 -->
     <section id="overview" class="py-16 px-4 md:px-8">
-        <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
-            <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+        <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry transition-delay-100">
+            <div class="flex items-center mb-6">
                 <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
                     <i class="fas fa-book-open"></i>
                 </div>
-                课程介绍
-            </h2>
+                <h2 class="text-2xl md:text-3xl font-bold">课程介绍</h2>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 <div>
                     <p class="mb-4 text-gray-300">本课程为期六周，专为大学生打造，通过线性代数深耕与Python及深度学习导论的系统学习，帮助学生建立扎实的数学基础与编程技能，抢占大学学习先机。</p>
-                    
+
                     <div class="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-4 mb-4">
                         <h4 class="font-semibold text-base md:text-lg mb-2 text-green-400">课程时间安排</h4>
                         <p class="text-gray-300 text-sm md:text-base">每周两次晚间课程，每次2小时，持续六周</p>
@@ -657,16 +657,16 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- 课程时间轴 -->
-        <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.2s;">
-            <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+        <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry transition-delay-200">
+            <div class="flex items-center mb-6">
                 <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
                     <i class="fas fa-calendar-alt"></i>
                 </div>
-                六周课程安排
-            </h2>
-            
+                <h2 class="text-2xl md:text-3xl font-bold">六周课程安排</h2>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div class="timeline-item">
                     <h3 class="text-lg font-semibold text-green-400 mb-1">第一周</h3>
@@ -704,14 +704,14 @@
 
     <!-- 授课团队 -->
     <section id="team" class="py-16 px-4 md:px-8 bg-gradient-to-br from-gray-900/50 to-blue-900/30">
-        <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
-            <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+        <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry transition-delay-100">
+            <div class="flex items-center mb-6">
                 <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
                     <i class="fas fa-users"></i>
                 </div>
-                授课团队
-            </h2>
-            
+                <h2 class="text-2xl md:text-3xl font-bold">授课团队</h2>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="w-32 h-32 rounded-full overflow-hidden border-3 border-green-400 mb-4 md:mb-0 md:mr-4">
@@ -730,7 +730,7 @@
                 <div>
                     <h4 class="text-lg font-semibold text-blue-400 mb-3">导师寄语</h4>
                     <p class="text-gray-300 text-sm md:text-base mb-4">"精通数学、物理与人工智能。学长团队致力于帮助您在六周内掌握未来学习关键技能，为大学学习与荣誉专业二次招生做好准备。"</p>
-                    
+
                     <div class="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-3">
                         <h4 class="font-semibold text-base mb-2 text-green-400 text-sm md:text-base">教学理念</h4>
                         <p class="text-gray-300 text-sm md:text-base">理论与实践相结合，注重基础概念的深入理解和实际应用能力的培养，通过案例教学和项目实践帮助学员快速掌握核心技能。</p>
@@ -741,15 +741,15 @@
     </section>
 
     <!-- 课程模块 -->
-    <section id="modules" class="py-25 px-4 md:px-8 mb-12">
+    <section id="modules" class="py-16 px-4 md:px-8 mb-12">
         <div class="container mx-auto">
-            <h2 class="text-2xl md:text-3xl font-bold mb-10 text-center staggered-entry" style="transition-delay: 0.1s;">
+            <h2 class="text-2xl md:text-3xl font-bold mb-10 text-center staggered-entry transition-delay-100">
                 <span class="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">三大核心模块</span>
             </h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- 线性代数模块 -->
-                <div class="flip-card h-full staggered-entry" style="transition-delay: 0.2s;">
+                <div class="flip-card h-full staggered-entry transition-delay-200">
                     <div class="flip-card-inner h-full">
                         <div class="flip-card-front glassmorphism p-4 card-hover h-full">
                             <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mb-3 mx-auto">
@@ -780,9 +780,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Python模块 -->
-                <div class="flip-card h-full staggered-entry" style="transition-delay: 0.3s;">
+                <div class="flip-card h-full staggered-entry transition-delay-300">
                     <div class="flip-card-inner h-full">
                         <div class="flip-card-front glassmorphism p-4 card-hover h-full">
                             <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mb-3 mx-auto">
@@ -813,9 +813,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 深度学习模块 -->
-                <div class="flip-card h-full staggered-entry" style="transition-delay: 0.4s;">
+                <div class="flip-card h-full staggered-entry transition-delay-400">
                     <div class="flip-card-inner h-full">
                         <div class="flip-card-front glassmorphism p-4 card-hover h-full">
                             <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mb-3 mx-auto">
@@ -850,35 +850,35 @@
         </div>
     </section>
 
-       <!-- 实操案例展示 -->
-       <section id="cases" class="py-52 px-4 md:px-8 bg-gradient-to-br from-gray-900/50 to-blue-900/30">
+    <!-- 实操案例展示 -->
+    <section id="cases" class="py-16 px-4 md:px-8 bg-gradient-to-br from-gray-900/50 to-blue-900/30">
         <div class="container mx-auto">
-            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry transition-delay-100">
+                <div class="flex items-center mb-6">
                     <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white mr-3">
                         <i class="fas fa-laptop-code"></i>
                     </div>
-                    实操案例展示
-                </h2>
-                
+                    <h2 class="text-2xl md:text-3xl font-bold">实操案例展示</h2>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glassmorphism p-4 rounded-xl card-hover staggered-entry" style="transition-delay: 0.2s;">
+                    <div class="glassmorphism p-4 rounded-xl card-hover staggered-entry transition-delay-200">
                         <div class="w-full h-32 mb-3 rounded-lg overflow-hidden">
                             <img src="https://p3-search.byteimg.com/obj/labis/c0443eeb8a2f3b5a58ff78c7fc2ba384" alt="Python代码运行界面" class="w-full h-full object-cover" loading="lazy">
                         </div>
                         <h3 class="text-base font-semibold text-green-400 mb-1">Python代码运行示例</h3>
                         <p class="text-gray-300 text-sm">使用VS Code编写的Python程序，实现数据读取与预处理功能。</p>
                     </div>
-                    
-                    <div class="glassmorphism p-4 rounded-xl card-hover staggered-entry" style="transition-delay: 0.3s;">
+
+                    <div class="glassmorphism p-4 rounded-xl card-hover staggered-entry transition-delay-300">
                         <div class="w-full h-32 mb-3 rounded-lg overflow-hidden">
                             <img src="https://p3-search.byteimg.com/obj/labis/e9bf4f0890dc2e403540a9550d5b583a" alt="线性代数三维可视化" class="w-full h-full object-cover" loading="lazy">
                         </div>
                         <h3 class="text-base font-semibold text-green-400 mb-1">线性代数可视化</h3>
                         <p class="text-gray-300 text-sm">三维柱状图展示矩阵变换效果，帮助理解高维数据结构。</p>
                     </div>
-                    
-                    <div class="glassmorphism p-4 rounded-xl card-hover staggered-entry" style="transition-delay: 0.4s;">
+
+                    <div class="glassmorphism p-4 rounded-xl card-hover staggered-entry transition-delay-400">
                         <div class="w-full h-32 mb-3 rounded-lg overflow-hidden">
                             <img src="https://p3-search.byteimg.com/obj/labis/393329091aa1abb61db167e257dd6c22" alt="PyTorch神经网络代码" class="w-full h-full object-cover" loading="lazy">
                         </div>
@@ -893,24 +893,24 @@
     <!-- 课程日历 -->
     <section id="calendar" class="py-10 px-4 md:px-8 bg-gradient-to-br from-gray-900/50 to-blue-900/30">
         <div class="container mx-auto">
-            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
+            <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry transition-delay-100">
                 <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">
                     <span class="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">2025年课程日历</span>
                 </h2>
-                
+
                 <div class="course-calendar glassmorphism">
                     <div class="calendar-header">
                         <h3 class="calendar-title" id="currentMonth">2025年7月</h3>
                         <div class="calendar-nav">
-                            <button id="prevMonth" aria-label="上一个月">
+                            <button id="prevMonth" type="button" aria-label="上一个月">
                                 <i class="fas fa-chevron-left"></i>
                             </button>
-                            <button id="nextMonth" aria-label="下一个月">
+                            <button id="nextMonth" type="button" aria-label="上一个月">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="calendar-days">
                         <div class="day-header">日</div>
                         <div class="day-header">一</div>
@@ -920,9 +920,9 @@
                         <div class="day-header">五</div>
                         <div class="day-header">六</div>
                     </div>
-                    
+
                     <div class="calendar-days" id="calendarDays"></div>
-                    
+
                     <div class="course-info" id="courseInfo">
                         <h4>课程安排</h4>
                         <p class="text-gray-400 text-sm">请点击日历中的日期查看课程安排</p>
@@ -932,15 +932,15 @@
         </div>
     </section>
 
- 
+
 
     <!-- 报名部分 -->
     <section id="enroll" class="py-16 px-4 md:px-8">
-        <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry" style="transition-delay: 0.1s;">
+        <div class="glassmorphism p-6 md:p-8 mb-12 staggered-entry transition-delay-100">
             <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">
                 <span class="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">立即报名</span>
             </h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
                 <div>
                     <h3 class="text-xl font-semibold text-green-400 mb-3">课程信息</h3>
@@ -962,13 +962,13 @@
                             <span>授课方式：线上直播+录播回放</span>
                         </li>
                     </ul>
-                    
+
                     <div class="bg-gradient-to-r from-green-900/30 to-blue-900/30 rounded-xl p-3">
                         <h4 class="font-semibold text-base mb-2 text-green-400 text-sm md:text-base">特别优惠</h4>
                         <p class="text-gray-300 text-sm md:text-base">前20名报名学员获赠学长长期一对一学习规划咨询。</p>
                     </div>
                 </div>
-                
+
                  <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl p-6 text-center">
                         <div class="w-40 h-40 mx-auto mb-4 bg-white rounded-lg flex items-center justify-center">
                             <img src="https://notes.sjtu.edu.cn/uploads/upload_cafe4ff01db5833feb4c4a3a50de6de9.png" alt="报名二维码" class="w-full h-full object-contain p-2">
@@ -987,9 +987,9 @@
                     <div class="text-lg font-bold bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
                         <i class="fas fa-graduation-cap mr-2"></i>六周赢在起跑线
                     </div>
-                    <p class="text-gray-400 text-sm mt-1">六周，赢在大学起跑线。——线性代数深耕 + Python & 深度学习导论速通</p>
+                    <p class="text-gray-400 text-sm mt-1">六周，赢在大学起跑线。——线性代数深耕 + Python &amp; 深度学习导论速通</p>
                 </div>
-                
+
                 <div class="flex space-x-4">
                     <a href="#" class="text-gray-400 hover:text-green-400 transition-colors text-sm" aria-label="微信">
                         <i class="fab fa-weixin"></i>
@@ -1002,7 +1002,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-800 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center text-sm">
                 <p class="text-gray-500 mb-3 md:mb-0">© 2025 六周赢在起跑线课程. 保留所有权利.</p>
                 <div class="text-gray-500">
@@ -1018,7 +1018,7 @@
             // 移动端减少粒子数量
             const isMobile = window.innerWidth < 768;
             const particleCount = isMobile ? 30 : 60;
-            
+
             particlesJS('particles-js', {
                 particles: {
                     number: {
@@ -1124,7 +1124,7 @@
                 },
                 retina_detect: true
             });
-            
+
             // 滚动动画
             const staggeredEntries = document.querySelectorAll('.staggered-entry');
             const observer = new IntersectionObserver((entries) => {
@@ -1134,11 +1134,11 @@
                     }
                 });
             }, { threshold: 0.1 });
-            
+
             staggeredEntries.forEach(entry => {
                 observer.observe(entry);
             });
-            
+
             // 导航栏滚动效果
             const nav = document.getElementById('mainNav');
             window.addEventListener('scroll', () => {
@@ -1150,14 +1150,14 @@
                     nav.classList.remove('shadow-lg');
                 }
             });
-            
+
             // 移动端导航菜单切换
             const menuButton = document.getElementById('mobileMenuButton');
             const mobileMenu = document.getElementById('mobileMenu');
-            
+
             menuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('active');
-                
+
                 // 切换图标
                 const icon = menuButton.querySelector('i');
                 if (mobileMenu.classList.contains('active')) {
@@ -1168,12 +1168,12 @@
                     icon.classList.add('fa-bars');
                 }
             });
-            
+
             // 点击页面其他区域关闭移动端菜单
             document.addEventListener('click', (event) => {
                 const isClickInsideNav = document.getElementById('mainNav').contains(event.target);
                 const isClickInsideMenu = mobileMenu.contains(event.target);
-                
+
                 if (!isClickInsideNav && !isClickInsideMenu && mobileMenu.classList.contains('active')) {
                     mobileMenu.classList.remove('active');
                     const icon = menuButton.querySelector('i');
@@ -1181,16 +1181,16 @@
                     icon.classList.add('fa-bars');
                 }
             });
-            
+
             // 平滑滚动
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
+
                     document.querySelector(anchor.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
-                    
+
                     // 点击导航链接后关闭移动端菜单
                     if (mobileMenu.classList.contains('active')) {
                         mobileMenu.classList.remove('active');
@@ -1201,7 +1201,7 @@
                     }
                 });
             });
-            
+
             // 回到顶部按钮
             const backToTop = document.getElementById('backToTop');
             window.addEventListener('scroll', () => {
@@ -1211,26 +1211,40 @@
                     backToTop.classList.remove('active');
                 }
             });
-            
+
             backToTop.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
             });
-            
+
             // 主题切换
             const themeToggle = document.getElementById('themeToggle');
             themeToggle.addEventListener('click', () => {
                 document.body.classList.toggle('light-mode');
                 themeToggle.classList.toggle('active');
             });
-            
+
+            // 主题样式定义
+            function applyTheme() {
+                if (document.body.classList.contains('light-mode')) {
+                    document.body.style.backgroundColor = '#f8fafc';
+                    document.body.style.color = '#0f172a';
+                } else {
+                    document.body.style.backgroundColor = '#0f172a';
+                    document.body.style.color = '#e2e8f0';
+                }
+            }
+
+            // 初始化主题
+            applyTheme();
+
             // 初始化导航栏状态
             if (window.scrollY > 100) {
                 nav.classList.remove('opacity-0');
             }
-            
+
             // ---------------------
             // 课程日历功能实现
             // ---------------------
@@ -1239,76 +1253,76 @@
             const prevMonthBtn = document.getElementById('prevMonth');
             const nextMonthBtn = document.getElementById('nextMonth');
             const courseInfoEl = document.getElementById('courseInfo');
-            
+
             // 课程数据 - 2025年7月至8月的课程安排（新增视频、讲义和作业链接）
             const courseData = {
                 '2025-07': [
-                    { 
-                        date: '05', 
-                        subject: '无纸化学习，科学上网与线性代数基础概念', 
+                    {
+                        date: '05',
+                        subject: '无纸化学习，科学上网与线性代数基础概念',
                         time: '20:00-22:00',
                         videoUrl: 'https://go.plvideo.cn/front/video/view?vid=q5967f89af0f4a84547982b994b512c3_q',
                         lectureUrl: '第一周第一讲讲义.pdf',
                         homeworkUrl: '第一周第一讲阅读作业.pdf',
                         exerciseUrl: '第一周第一讲习题.pdf'
                     },
-                    { 
-                        date: '11', 
-                        subject: '矩阵求解线性方程组', 
+                    {
+                        date: '11',
+                        subject: '矩阵求解线性方程组',
                         time: '20:00-22:00',
                         videoUrl: 'https://meeting.tencent.com/crm/KwPJZ4L461',
                         lectureUrl: '第一周第二讲 讲义.pdf',
                         homeworkUrl: '第一周第二讲阅读作业.pdf',
                         exerciseUrl: '第一周第二讲习题.pdf'
                     },
-                    { 
-                        date: '15', 
-                        subject: '大学英语学习分享//向量空间', 
+                    {
+                        date: '15',
+                        subject: '大学英语学习分享//向量空间',
                         time: '14:00-16:00',
                         videoUrl:'https://meeting.tencent.com/crm/KwPMdqo410',
                         lectureUrl: 'https://www.example.com/lecture/vector_spaces.pdf',
                         homeworkUrl: 'https://www.example.com/homework/vector_spaces.zip',
                         exerciseUrl: '第二周第一讲习题.pdf'
                     },
-                    { 
-                        date: '18', 
-                        subject: 'python以及环境配置//AX=B的解空间结构', 
+                    {
+                        date: '18',
+                        subject: 'python以及环境配置//AX=B的解空间结构',
                         time: '20:00-22:00',
                         videoUrl: 'https://meeting.tencent.com/crm/2VoOQn00cc',
                         lectureUrl: 'https://www.example.com/lecture/python_basics.pdf',
                         homeworkUrl: 'https://www.example.com/homework/python_basics.zip',
                         exerciseUrl: '第二周第二讲习题.pdf'
                     },
-                    { 
-                        date: '21', 
-                        subject: '录取专业的类型、大类分流机制以及转专业或跨专业保研的可行性//矩阵空间', 
+                    {
+                        date: '21',
+                        subject: '录取专业的类型、大类分流机制以及转专业或跨专业保研的可行性//矩阵空间',
                         time: '20:00-22:00',
                         videoUrl: 'https://meeting.tencent.com/crm/2YQaOm33d1',
                         lectureUrl: 'https://www.example.com/lecture/matrix_operations.pdf',
                         homeworkUrl: 'https://www.example.com/homework/matrix_operations.zip',
                         exerciseUrl: '第三周第一讲习题.pdf'
                     },
-                    { 
-                        date: '23', 
-                        subject: '大学课程学习策略//四个正交子空间', 
+                    {
+                        date: '23',
+                        subject: '大学课程学习策略//四个正交子空间',
                         time: '20:00-22:00',
                         videoUrl: 'https://meeting.tencent.com/crm/KDDmb6vp75',
                         lectureUrl: 'https://www.example.com/lecture/numpy_basics.pdf',
                         homeworkUrl: 'https://www.example.com/homework/numpy_basics.zip',
                         exerciseUrl: '第三周第二讲习题.pdf'
                     },
-                    { 
-                        date: '26', 
-                        subject: '大学选课策略//正交矩阵与投影矩阵', 
+                    {
+                        date: '26',
+                        subject: '大学选课策略//正交矩阵与投影矩阵',
                         time: '20:00-22:00',
                         videoUrl: 'https://meeting.tencent.com/crm/2BjQ1DwX1e',
                         lectureUrl: 'https://www.example.com/lecture/linear_equations.pdf',
                         homeworkUrl: 'https://www.example.com/homework/linear_equations.zip',
                         exerciseUrl: '第四周第一讲习题.pdf'
                     },
-                    { 
-                        date: '30', 
-                        subject: '行列式与逆矩阵', 
+                    {
+                        date: '30',
+                        subject: '行列式与逆矩阵',
                         time: '20:00-22:00',
                         videoUrl: 'https://meeting.tencent.com/crm/NoWDWZ35bf',
                         lectureUrl: 'https://www.example.com/lecture/pandas_basics.pdf',
@@ -1317,37 +1331,36 @@
                     }
                 ],
                 '2025-08': [
-                    { 
-                        date: '13', 
-                        subject: '特征值与特征向量', 
+                    {
+                        date: '13',
+                        subject: '特征值与特征向量',
                         time: '20:00-22:00',
                         videoUrl: 'https://meeting.tencent.com/crm/ldkX0Repc6',
                         lectureUrl: 'https://www.example.com/lecture/dl_basics.pdf',
                         homeworkUrl: 'https://www.example.com/homework/dl_basics.zip',
                         exerciseUrl: '第五周第一讲习题.pdf'
                     },
-                    { 
-                        date: '15', 
-                        subject: '自主构建gpt对话//矩阵特征值分解巧解微分方程', 
+                    {
+                        date: '15',
+                        subject: '自主构建gpt对话//矩阵特征值分解巧解微分方程',
                         time: '20:00-22:00',
                         videoUrl: 'https://meeting.tencent.com/crm/2rjqDoo5d3',
                         lectureUrl: 'https://www.example.com/lecture/pytorch_basics.pdf',
                         homeworkUrl: 'https://www.example.com/homework/pytorch_basics.zip',
                         exerciseUrl: '第五周第二讲习题.pdf'
                     }
-                   
+                ]
             };
-            
+
             // 当前显示的年月
             let currentYear = 2025;
             let currentMonth = 7; // 7月
-            
+
             // 初始化日历
             initCalendar();
-            
+
             // 上一个月按钮事件
-                        // 上一个月按钮事件
-                        prevMonthBtn.addEventListener('click', () => {
+            prevMonthBtn.addEventListener('click', () => {
                 currentMonth--;
                 if (currentMonth < 1) {
                     currentMonth = 12;
@@ -1355,7 +1368,7 @@
                 }
                 renderCalendar();
             });
-            
+
             // 下一个月按钮事件
             nextMonthBtn.addEventListener('click', () => {
                 currentMonth++;
@@ -1365,30 +1378,30 @@
                 }
                 renderCalendar();
             });
-            
+
             // 初始化日历
             function initCalendar() {
                 renderCalendar();
             }
-            
+
             // 渲染日历
             function renderCalendar() {
                 // 更新当前月份显示
                 const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
                 currentMonthEl.textContent = `${currentYear}年${monthNames[currentMonth - 1]}`;
-                
+
                 // 清空日历
                 calendarDaysEl.innerHTML = '';
-                
+
                 // 获取当前月份的第一天是星期几 (0-6, 0是周日)
                 const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay();
-                
+
                 // 获取当前月份的天数
                 const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
-                
+
                 // 获取上个月的天数
                 const daysInPrevMonth = new Date(currentYear, currentMonth - 1, 0).getDate();
-                
+
                 // 渲染上个月的最后几天
                 for (let i = firstDay - 1; i >= 0; i--) {
                     const dayEl = document.createElement('div');
@@ -1396,14 +1409,14 @@
                     dayEl.innerHTML = `<span class="day-number">${daysInPrevMonth - i}</span>`;
                     calendarDaysEl.appendChild(dayEl);
                 }
-                
+
                 // 渲染当前月份的天数
                 for (let day = 1; day <= daysInMonth; day++) {
                     const dayEl = document.createElement('div');
                     dayEl.className = 'calendar-day';
                     dayEl.dataset.date = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     dayEl.innerHTML = `<span class="day-number">${day}</span>`;
-                    
+
                     // 检查是否有课程
                     const dateKey = `${currentYear}-${String(currentMonth).padStart(2, '0')}`;
                     const courseForDay = courseData[dateKey]?.find(course => course.date === String(day).padStart(2, '0'));
@@ -1411,13 +1424,13 @@
                         dayEl.classList.add('day-with-course');
                         dayEl.dataset.course = JSON.stringify(courseForDay);
                     }
-                    
+
                     // 添加点击事件
                     dayEl.addEventListener('click', () => handleDayClick(dayEl));
-                    
+
                     calendarDaysEl.appendChild(dayEl);
                 }
-                
+
                 // 添加动画效果
                 const calendarDays = document.querySelectorAll('.calendar-day:not(.day-disabled)');
                 calendarDays.forEach((day, index) => {
@@ -1427,17 +1440,17 @@
                     }, 50 * index);
                 });
             }
-            
+
             // 处理日期点击事件
             function handleDayClick(dayEl) {
                 // 移除之前选中的日期
                 document.querySelectorAll('.calendar-day.day-selected').forEach(day => {
                     day.classList.remove('day-selected');
                 });
-                
+
                 // 添加当前选中的日期
                 dayEl.classList.add('day-selected');
-                
+
                 // 显示课程信息
                 const courseDataStr = dayEl.dataset.course;
                 if (courseDataStr) {
@@ -1479,7 +1492,7 @@
                         <p class="text-gray-400 text-sm">当天没有安排课程</p>
                     `;
                 }
-                
+
                 // 添加选中动画
                 const selectedDay = dayEl.querySelector('.day-number');
                 selectedDay.style.transform = 'scale(1.2)';
@@ -1487,9 +1500,16 @@
                     selectedDay.style.transform = 'scale(1)';
                 }, 300);
             }
-            
+
             // 报名表单提交处理
-            
+            // 注意：由于没有实际的表单元素，这里只是一个示例处理函数
+            function handleEnrollmentForm() {
+                // 未来可以在这里添加表单验证和提交逻辑
+                console.log('报名表单处理函数已初始化');
+            }
+
+            // 初始化表单处理
+            handleEnrollmentForm();
         });
     </script>
 </body>
